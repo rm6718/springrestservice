@@ -1,0 +1,5 @@
+com/ironyard/desserts/data/Desserts.class
+com/ironyard/desserts/controller/DessertController.class
+com/ironyard/desserts/Application.class
+com/ironyard/desserts/data/Friend.class
+com/ironyard/desserts/service/FavoriteDessertService.class
