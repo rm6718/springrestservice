@@ -6,5 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 /**
  * Created by sam on 10/24/16.
  */
-public interface FavoriteDessertService extends CrudRepository<Friend, Long> {
+public interface FriendCrudRepository extends CrudRepository<Friend, Long> {
 }
+

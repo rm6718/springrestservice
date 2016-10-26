@@ -2,10 +2,13 @@ package com.ironyard.desserts.controller;
 
 
 import com.ironyard.desserts.data.Friend;
-import com.ironyard.desserts.service.FavoriteDessertService;
+import com.ironyard.desserts.service.FriendCrudRepository;
+import com.ironyard.desserts.service.FriendPagingSortingRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -15,10 +18,15 @@ import org.springframework.web.bind.annotation.*;
 public class DessertController {
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
-    private FavoriteDessertService dessertRepo;
+    private FriendCrudRepository dessertRepo;
+    private FriendPagingSortingRepository frndPgStRepo;
+
 
     @Autowired
-    public void setDessertRepo(FavoriteDessertService dessertRepo) {
+    public void setFrndPgStRepo(FriendPagingSortingRepository frndPgStRepo) { this.frndPgStRepo = frndPgStRepo; }
+
+    @Autowired
+    public void setDessertRepo(FriendCrudRepository dessertRepo) {
         this.dessertRepo = dessertRepo;
     }
 
@@ -53,4 +61,32 @@ public class DessertController {
         return found;
     }
 
+
+    @RequestMapping(value = "/friendsdesserts", method = RequestMethod.GET)
+    public Iterable<Friend> listAll(@RequestParam(value = "page") Integer page,
+                                    @RequestParam("size") Integer size,
+                                    @RequestParam(value = "sortby", required = false) String sortby,
+                                    @RequestParam(value = "dir", required = false) Sort.Direction direction) {
+
+        Iterable<Friend> found = null;
+
+        if (sortby == null) {
+            sortby = "name";
+        }
+
+        if (direction == null) {
+            direction = Sort.Direction.ASC;
+        }
+
+        //long way
+        Sort s = new Sort(direction, sortby);
+        PageRequest pr = new PageRequest(page, size, s);
+        found = frndPgStRepo.findAll(pr);
+
+
+        //short way
+        //found = frndPgStRepo.findAll(new PageRequest(page, size, new Sort(direction, sortby)));
+
+        return found;
+    }
 }
