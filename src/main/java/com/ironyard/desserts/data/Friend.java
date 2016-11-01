@@ -14,6 +14,10 @@ public class Friend {
     private boolean sleepover;
     private String birthday;
 
+
+    /**
+     * Composition means this object is composed of others
+     */
     @OneToMany(cascade = CascadeType.ALL)
     private List<Desserts> desserts;
 

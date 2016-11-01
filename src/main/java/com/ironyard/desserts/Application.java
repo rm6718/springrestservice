@@ -27,10 +27,10 @@ public class Application {
     @Bean
     public Docket newApi() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .groupName("favedesserts")
+                .groupName("service")
                 .apiInfo(apiInfo())
                 .select()
-                .paths(regex("/friend.*"))
+                .paths(regex("/service.*"))
                 .build();
     }
 

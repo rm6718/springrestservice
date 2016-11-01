@@ -30,39 +30,39 @@ public class DessertController {
         this.dessertRepo = dessertRepo;
     }
 
-    @RequestMapping(value = "/friend", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(value = "/service/friend", method = RequestMethod.POST, produces = "application/json")
     public Friend save(@RequestBody Friend aFriend){
         dessertRepo.save(aFriend);
         return dessertRepo.findOne(aFriend.getId());
     }
 
-    @RequestMapping(value = "/friendsdesserts", method = RequestMethod.GET)
+    @RequestMapping(value = "/service/friendsdesserts", method = RequestMethod.GET)
     public Iterable<Friend> listAll(){
         Iterable<Friend> found = dessertRepo.findAll();
         return found;
     }
 
-    @RequestMapping(value = "/friendsdesserts/delete/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/service/friendsdesserts/delete/{id}", method = RequestMethod.DELETE)
     public Friend delete(@PathVariable long id){
         Friend deleted = dessertRepo.findOne(id);
         dessertRepo.delete(id);
         return deleted;
     }
 
-    @RequestMapping(value = "/friendsdesserts/update", method = RequestMethod.PUT)
+    @RequestMapping(value = "/service/friendsdesserts/update", method = RequestMethod.PUT)
     public Friend update(@RequestBody Friend updatedFriend){
         dessertRepo.save(updatedFriend);
         return dessertRepo.findOne(updatedFriend.getId());
     }
 
-    @RequestMapping(value = "/friendsdesserts/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/service/friendsdesserts/{id}", method = RequestMethod.GET)
     public Friend show(@PathVariable long id){
         Friend found = dessertRepo.findOne(id);
         return found;
     }
 
 
-    @RequestMapping(value = "/friendsdesserts", method = RequestMethod.GET)
+    @RequestMapping(value = "/service/friendsdesserts/list", method = RequestMethod.GET)
     public Iterable<Friend> listAll(@RequestParam(value = "page") Integer page,
                                     @RequestParam("size") Integer size,
                                     @RequestParam(value = "sortby", required = false) String sortby,

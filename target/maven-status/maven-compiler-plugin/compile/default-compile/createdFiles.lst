@@ -1,5 +1,12 @@
-com/ironyard/desserts/data/Desserts.class
+com/ironyard/desserts/controller/PhotosController.class
+com/ironyard/desserts/dto/Posts.class
+com/ironyard/desserts/controller/GlobalExceptionHandler.class
 com/ironyard/desserts/controller/DessertController.class
+com/ironyard/desserts/service/FriendPagingSortingRepository.class
+com/ironyard/desserts/service/FriendCrudRepository.class
 com/ironyard/desserts/Application.class
 com/ironyard/desserts/data/Friend.class
-com/ironyard/desserts/service/FavoriteDessertService.class
+com/ironyard/desserts/data/Desserts.class
+com/ironyard/desserts/dto/Photos.class
+com/ironyard/desserts/controller/DessertJspController.class
+com/ironyard/desserts/controller/PostController.class
